@@ -1,26 +1,29 @@
-# Git-testo_260316 - ウェブサイトプロジェクト
+# POWER FIT GYM - フィットネスジム ウェブサイト
 
 ## 概要
-シンプルなHTML/CSS/JavaScriptで構成された静的ウェブサイトプロジェクトです。
+フィットネスジム「POWER FIT GYM」のウェブサイトです。
 
-## ディレクトリ構成
+## ページ構成
+- ヒーローセクション（キャッチコピー + CTA）
+- 実績数値（会員数・トレーナー数・プログラム数・満足度）
+- ジムについて（施設紹介・特徴）
+- トレーニングプログラム（6種類）
+- トレーナー紹介（3名）
+- 料金プラン（3プラン）
+- 無料体験お問い合わせフォーム
+
+## ファイル構成
 ```
-├── index.html       # メインページ
+├── index.html      # メインページ
 ├── css/
-│   └── style.css    # スタイルシート
+│   └── style.css   # スタイルシート
 ├── js/
-│   └── main.js      # JavaScript
-├── images/          # 画像ファイル
-└── README.md        # このファイル
+│   └── main.js     # JavaScript
+└── README.md
 ```
 
-## 開発方法
-1. `index.html` をブラウザで開くだけで確認できます
-2. CSSは `css/style.css` に記述します
-3. JavaScriptは `js/main.js` に記述します
-4. 画像は `images/` ディレクトリに配置します
-
-## 技術スタック
-- HTML5
-- CSS3
-- JavaScript (ES6+)
+## 技術
+- HTML5 / CSS3（Grid, Flexbox, カスタムプロパティ）
+- JavaScript ES6+（Intersection Observer, カウントアップ）
+- レスポンシブデザイン対応
+- Google Fonts（Noto Sans JP, Oswald）

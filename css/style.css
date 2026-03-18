@@ -1,42 +1,671 @@
+/* ============================================
+   POWER FIT GYM - スタイルシート
+   ============================================ */
+
+:root {
+  --color-primary: #0d0d0d;
+  --color-accent: #ff3b30;
+  --color-accent-dark: #d32f2f;
+  --color-text: #333;
+  --color-text-light: #888;
+  --color-bg: #ffffff;
+  --color-bg-gray: #f4f4f4;
+  --color-bg-dark: #111111;
+  --font-jp: "Noto Sans JP", sans-serif;
+  --font-en: "Oswald", sans-serif;
+  --max-width: 1100px;
+  --transition: 0.3s ease;
+}
+
 /* リセット */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ベーススタイル */
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
-  color: #333;
+  font-family: var(--font-jp);
+  color: var(--color-text);
+  line-height: 1.8;
+  background: var(--color-bg);
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================
+   ヘッダー
+   ============================================ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(13, 13, 13, 0.95);
+  backdrop-filter: blur(8px);
+}
+
+.header__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 70px;
+}
+
+.header__logo {
+  font-family: var(--font-en);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+.header__logo span {
+  color: var(--color-accent);
+}
+
+.nav__list {
+  display: flex;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.nav__link {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: color var(--transition);
+}
+
+.nav__link:hover {
+  color: var(--color-accent);
+}
+
+.nav__link--cta {
+  background: var(--color-accent);
+  color: #fff !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+}
+
+.nav__link--cta:hover {
+  background: var(--color-accent-dark);
+}
+
+.header__menu {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.header__menu span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+}
+
+/* ============================================
+   ヒーロー
+   ============================================ */
+.hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0d0d0d 50%, #1a0a0a 100%);
+  overflow: hidden;
 }
 
-/* ヘッダー */
-header {
-  background-color: #2c3e50;
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 80%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(255, 59, 48, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90" opacity="0.03" fill="white">&#9899;</text></svg>') repeat;
+  opacity: 0.5;
+}
+
+.hero__content {
+  position: relative;
+  text-align: center;
   color: #fff;
-  padding: 1rem 2rem;
+  padding: 2rem;
+  max-width: 700px;
 }
 
-/* メインコンテンツ */
-main {
-  flex: 1;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.hero__sub {
+  font-family: var(--font-en);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.hero__title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.hero__desc {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2.5rem;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   ボタン
+   ============================================ */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: center;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--color-accent-dark);
+  transform: translateY(-2px);
+}
+
+.btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn--outline:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn--full {
+  display: block;
   width: 100%;
 }
 
-/* フッター */
-footer {
-  background-color: #2c3e50;
-  color: #fff;
+/* ============================================
+   数字セクション
+   ============================================ */
+.stats {
+  background: var(--color-accent);
+  padding: 3rem 2rem;
+}
+
+.stats__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
   text-align: center;
-  padding: 1rem 2rem;
+  color: #fff;
+}
+
+.stats__number {
+  font-family: var(--font-en);
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.stats__unit {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.stats__label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-top: 0.3rem;
+}
+
+/* ============================================
+   共通セクション
+   ============================================ */
+.section {
+  padding: 6rem 2rem;
+}
+
+.section--gray {
+  background: var(--color-bg-gray);
+}
+
+.section--dark {
+  background: var(--color-bg-dark);
+  color: #fff;
+}
+
+.section__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.section__label {
+  font-family: var(--font-en);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+
+.section__title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 3rem;
+}
+
+/* ============================================
+   ジムについて
+   ============================================ */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about__placeholder {
+  background: linear-gradient(135deg, #222, #333);
+  color: rgba(255, 255, 255, 0.2);
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-en);
+  font-size: 1.5rem;
+  border-radius: 8px;
+}
+
+.about__text p {
+  margin-bottom: 1rem;
+  color: var(--color-text-light);
+}
+
+.about__features {
+  margin-top: 1.5rem;
+}
+
+.about__features li {
+  padding: 0.4rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.about__features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%;
+}
+
+/* ============================================
+   プログラム
+   ============================================ */
+.programs__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.program-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all var(--transition);
+}
+
+.program-card:hover {
+  background: rgba(255, 59, 48, 0.1);
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
+}
+
+.program-card__icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.program-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.program-card__desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+}
+
+/* ============================================
+   トレーナー
+   ============================================ */
+.trainers__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.trainer-card {
+  text-align: center;
+}
+
+.trainer-card__photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent), #ff6b6b);
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-en);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.trainer-card__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.trainer-card__role {
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.trainer-card__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+}
+
+/* ============================================
+   料金プラン
+   ============================================ */
+.pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.price-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  position: relative;
+  border: 2px solid transparent;
+  transition: all var(--transition);
+}
+
+.price-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.price-card--popular {
+  border-color: var(--color-accent);
+  transform: scale(1.05);
+}
+
+.price-card--popular:hover {
+  transform: scale(1.05) translateY(-4px);
+}
+
+.price-card__badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+}
+
+.price-card__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.price-card__price {
+  font-family: var(--font-en);
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.price-card__yen {
+  font-size: 1.2rem;
+  vertical-align: top;
+}
+
+.price-card__period {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  font-weight: 400;
+}
+
+.price-card__features {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.price-card__features li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.price-card__features li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* ============================================
+   お問い合わせ
+   ============================================ */
+.contact__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.contact__text p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 1rem;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form__input {
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: var(--font-jp);
+  transition: border-color var(--transition);
+}
+
+.form__input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.form__input option {
+  background: var(--color-bg-dark);
+  color: #fff;
+}
+
+/* ============================================
+   フッター
+   ============================================ */
+.footer {
+  background: #000;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 4rem 2rem 2rem;
+}
+
+.footer__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.footer__logo {
+  font-family: var(--font-en);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.footer__logo span {
+  color: var(--color-accent);
+}
+
+.footer__desc {
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.footer__heading {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.footer__link {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  transition: color var(--transition);
+}
+
+a.footer__link:hover {
+  color: #fff;
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+/* ============================================
+   レスポンシブ
+   ============================================ */
+@media (max-width: 768px) {
+  .nav__list { display: none; }
+  .header__menu { display: flex; }
+
+  .hero__title { font-size: 2.2rem; }
+
+  .stats__inner { grid-template-columns: repeat(2, 1fr); }
+
+  .about__grid,
+  .programs__grid,
+  .trainers__grid,
+  .pricing__grid,
+  .contact__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .price-card--popular {
+    transform: none;
+  }
+
+  .price-card--popular:hover {
+    transform: translateY(-4px);
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 4rem 1.5rem;
+  }
 }
